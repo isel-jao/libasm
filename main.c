@@ -6,7 +6,7 @@
 /*   By: isel-jao <isel-jao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 14:50:06 by isel-jao          #+#    #+#             */
-/*   Updated: 2021/04/01 10:06:19 by isel-jao         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:08:00 by isel-jao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
+#include <errno.h>
 
 
 /*
@@ -58,7 +59,7 @@ int main(void)
 
 	bzero(buffer, 100);
 
-	printf("main\n");
+	printf("main----------------------\n");
 /*
 ** 	read form inpus
 */
@@ -68,24 +69,25 @@ int main(void)
 /*
 **	read Makfile 
 */
-		n_byte = 10;
-		fd = open("Makefile", O_RDONLY);
+		// n_byte = 10;
+		// fd = open("Makefile", O_RDONLY);
 
-		buffer[n_byte] = 0;
-		while ((r = ft_read(fd, buffer, 10)) > 0)
-		{
-			buffer[n_byte] = 0;
-			printf("%s", buffer);
-		}
-		if (r == 0)
-			printf("%s", buffer);
+		// buffer[n_byte] = 0;
+		// while ((r = ft_read(fd, buffer, 10)) > 0)
+		// {
+		// 	buffer[n_byte] = 0;
+		// 	printf("%s", buffer);
+		// }
+		// if (r == 0)
+		// 	printf("%s", buffer);
 /*
 **	wrong fd
 */
 
-	// fd = -1;
-	// r = ft_read(fd, buffer, 10);
-	// printf("r = %d\t\tbuf =  |%s|\n", r, buffer);
+	fd = -1;
+	r = ft_read(fd, buffer, 10);
+	
+	printf("r = %d\t\terror msj %s\t\tbuf =  |%s|\n", r, strerror(errno), buffer);
 
 
 /*
